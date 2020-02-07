@@ -36,6 +36,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/dav-cooks",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -72,6 +73,10 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }
@@ -139,5 +144,8 @@
       }
     }
   },
-  "defaultProject": "dav-cooks"
+  "defaultProject": "dav-cooks",
+  "cli": {
+    "analytics": "c92a0361-5007-4b50-b2ad-85bb8dbc316f"
+  }
 }

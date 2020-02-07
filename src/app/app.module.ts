@@ -13,8 +13,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
-import { UserState } from './state/user.state';
-
 
 @NgModule({
   declarations: [
@@ -30,8 +28,8 @@ import { UserState } from './state/user.state';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
-    AngularFirestoreModule,
-    NgxsModule.forRoot([UserState], { developmentMode: !environment.production })
+    AngularFirestoreModule.enablePersistence(),
+    NgxsModule.forRoot([], { developmentMode: !environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

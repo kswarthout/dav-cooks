@@ -17,6 +17,7 @@ export class AuthService {
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         // User is signed in.
+        console.log(user);
         this.user = firebaseAuth.authState;
         var displayName = user.displayName;
         var email = user.email;
@@ -57,7 +58,12 @@ export class AuthService {
   }
 
   loginWithEmail(payload: { email: string, password: string }) {
-    return this.firebaseAuth.auth.signInWithEmailAndPassword(payload.email, payload.password);
+    return this.firebaseAuth.auth.signInWithEmailAndPassword(payload.email, payload.password)
+      .then((result) => {
+        console.log(result);
+      }).catch((err) => {
+        console.log(err);
+      });
   }
 
   logout() {
