@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment.prod';
 import { AppMaterialModule } from './app-material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { UserState } from './state/user.state';
 
@@ -18,7 +19,8 @@ import { UserState } from './state/user.state';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -26,9 +28,9 @@ import { UserState } from './state/user.state';
     ReactiveFormsModule,
     AppMaterialModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
-    AngularFirestoreModule.enablePersistence(),
+    AngularFirestoreModule,
     NgxsModule.forRoot([UserState], { developmentMode: !environment.production })
   ],
   providers: [],

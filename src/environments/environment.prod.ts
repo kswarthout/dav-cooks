@@ -1,12 +1,13 @@
 export const environment = {
   production: true,
-  firebase: {
-    apiKey: "AIzaSyAVw2-XbNSdZQ4BFjbaRaspI7jkb9drvYk",
-    authDomain: "dav-cooks.firebaseapp.com",
-    databaseURL: "https://dav-cooks.firebaseio.com",
-    projectId: "dav-cooks",
-    storageBucket: "",
-    messagingSenderId: "855268571916",
-    appId: "1:855268571916:web:aeba330cb4ab037d"
+  firebaseConfig: {
+    apiKey: "AIzaSyCgKbT_aNhJv1dzgtxAgCv2xT4hD9IeopU",
+    authDomain: "dav-cooks-6405f.firebaseapp.com",
+    databaseURL: "https://dav-cooks-6405f.firebaseio.com",
+    projectId: "dav-cooks-6405f",
+    storageBucket: "dav-cooks-6405f.appspot.com",
+    messagingSenderId: "463398713726",
+    appId: "1:463398713726:web:132a58e4ad7cd19f3f9b2f",
+    measurementId: "G-DF0RHTTS38"
   }
 };

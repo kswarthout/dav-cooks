@@ -13,7 +13,24 @@ export class AuthService {
   private userDetails: firebase.User = null;
 
   constructor(private firebaseAuth: AngularFireAuth, private router: Router) {
-    this.user = firebaseAuth.authState;
+    // this.user = firebaseAuth.authState;
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        // User is signed in.
+        this.user = firebaseAuth.authState;
+        var displayName = user.displayName;
+        var email = user.email;
+        var emailVerified = user.emailVerified;
+        var photoURL = user.photoURL;
+        var isAnonymous = user.isAnonymous;
+        var uid = user.uid;
+        var providerData = user.providerData;
+        // ...
+      } else {
+        // User is signed out.
+        // ...
+      }
+    });
     // this.user.subscribe(
     //   (user) => {
     //     if (user) {

@@ -1,0 +1,17 @@
+.login__form__container {
+    display: flex;
+    flex: auto;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(135deg, #CE9FFC 10%, #7367F0 100%);
+}
+
+.login__form {
+    width: 275px;
+    /* height: 350px; */
+}
+
+.full__width {
+    width: 100%;
+}

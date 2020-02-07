@@ -7,7 +7,7 @@ import { LoginWithEmailAction } from '../state/user.state';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 
@@ -23,7 +23,14 @@ export class LoginComponent implements OnInit {
     this.store.dispatch(new LoginWithEmailAction({
       email: 'kari.swarthout@gmail.com',
       password: '123456'
-    }));
+    })).subscribe(
+      data => {
+        console.log(data);
+      },
+      err => {
+        console.log(err);
+      }
+    )
   }
 
 }
