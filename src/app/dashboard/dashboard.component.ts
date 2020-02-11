@@ -1,8 +1,10 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSidenavContainer } from '@angular/material/sidenav';
 
 import { AuthService } from '../services/auth.service';
+import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 
 @Component({
   selector: 'dav-cooks-dashboard',
@@ -17,7 +19,12 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild(MatSidenavContainer) sidenavContainer: MatSidenavContainer;
 
-  constructor(public auth: AuthService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(
+    public auth: AuthService,
+    changeDetectorRef: ChangeDetectorRef,
+    media: MediaMatcher,
+    public dialog: MatDialog
+  ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -32,6 +39,14 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnDestroy() {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
+
+  addRecipe() {
+    const dialogRef = this.dialog.open(AddRecipeComponent, {
+    });
+    dialogRef.afterClosed().subscribe(result => {
+
+    });
   }
 
 }

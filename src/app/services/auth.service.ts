@@ -13,9 +13,9 @@ export class AuthService {
 
   constructor(private firebaseAuth: AngularFireAuth, private router: Router) {
     this.user = firebaseAuth.authState;
-    this.user.subscribe((user) => {
-      console.log(user.photoURL);
-    })
+    // this.user.subscribe((user) => {
+    //   console.log(user.photoURL);
+    // })
   }
 
   get authenticated(): boolean { return this.firebaseAuth.authState !== null; }

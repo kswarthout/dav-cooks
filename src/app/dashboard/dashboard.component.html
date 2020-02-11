@@ -24,6 +24,16 @@
         </mat-sidenav>
 
         <mat-sidenav-content>
+
+            <!-- ADD NEW RECIPE BUTTON -->
+            <button mat-fab
+                    color="primary"
+                    class="add__recipe__btn"
+                    matTooltip="Create new recipe!"
+                    [matTooltipPosition]="'before'"
+                    (click)="addRecipe()">
+                <mat-icon>add</mat-icon>
+            </button>
         </mat-sidenav-content>
 
     </mat-sidenav-container>

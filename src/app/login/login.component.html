@@ -1,7 +1,10 @@
-<div class="login__form__container">
-    <div class="login__form mat-elevation-z8">
+<div class="container">
+    <div class="login__header">
+        <h4 class="mat-h1">Login</h4>
+        <p class="mat-h4">Hello! let's get started</p>
+    </div>
+    <div class="login__form mat-elevation-z24">
         <div style="padding: 16px;">
-            <h4 class="mat-h2">Login</h4>
             <mat-form-field class="full__width"
                             appearance="outline">
                 <mat-label>Email</mat-label>
@@ -23,9 +26,14 @@
                     Password is <strong>required</strong>
                 </mat-error>
             </mat-form-field>
-            <button mat-raised-button
-                    color="primary"
-                    (click)="login()">Login</button>
+            <div style="display: flex; justify-content: space-between;">
+                <button mat-raised-button
+                        color="primary"
+                        (click)="login()">Login</button>
+                <button mat-button
+                        color="primary">Sign-Up</button>
+            </div>
+
         </div>
     </div>
 </div>
