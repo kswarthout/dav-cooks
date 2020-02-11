@@ -4,12 +4,16 @@
     height: 100%;
     align-items: center;
     justify-content: center;
-    background-image: linear-gradient(135deg, #CE9FFC 10%, #7367F0 100%);
+    background: #6a3093;
+    background: -webkit-linear-gradient(to right, #a044ff, #6a3093);
+    background: linear-gradient(to right, #a044ff, #6a3093);
 }
 
 .login__form {
-    width: 275px;
-    /* height: 350px; */
+    width: 350px;
+    height: 400px;
+    background: #f6f6f6;
+    border-radius: 6px;
 }
 
 .full__width {

@@ -1,0 +1,38 @@
+<span *ngIf="auth.user | async as user"
+      style="display: flex;">
+
+    <!-- USER AVATAR -->
+    <span *ngIf="user.photoURL; then avatar else initials"></span>
+
+    <!-- USER HAS PHOTO -->
+    <ng-template #avatar>
+        <img src="{{user.photoURL}}"
+             alt="Avatar"
+             class="avatar">
+    </ng-template>
+
+    <!-- USER HAS NO PHOTO -->
+    <ng-template #initials>
+        <div class="avatar__circle">
+            <span class="initials">{{getInitials(user.displayName)}}</span>
+        </div>
+    </ng-template>
+
+    <button mat-icon-button
+            [matMenuTriggerFor]="menu"
+            aria-label="Example icon-button with a menu">
+        <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+            <mat-icon>settings</mat-icon>
+            <span>Settings</span>
+        </button>
+        <button mat-menu-item
+                (click)="auth.logout()">
+            <mat-icon>power_settings_new</mat-icon>
+            <span>Logout</span>
+        </button>
+    </mat-menu>
+
+</span>
