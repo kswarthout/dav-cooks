@@ -7,26 +7,20 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "styleext": "scss",
-          "spec": false
+          "style": "scss",
+          "skipTests": true
         },
         "@schematics/angular:class": {
-          "spec": false
-        },
-        "@schematics/angular:directive": {
-          "spec": false
-        },
-        "@schematics/angular:guard": {
-          "spec": false
-        },
-        "@schematics/angular:module": {
-          "spec": false
-        },
-        "@schematics/angular:pipe": {
-          "spec": false
+          "skipTests": true
         },
         "@schematics/angular:service": {
-          "spec": false
+          "skipTests": true
+        },
+        "@schematics/angular:directive": {
+          "skipTests": true
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": true
         }
       },
       "root": "",
@@ -111,7 +105,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           }
@@ -140,6 +134,10 @@
               "devServerTarget": "dav-cooks:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
     }
@@ -147,31 +145,5 @@
   "defaultProject": "dav-cooks",
   "cli": {
     "analytics": "c92a0361-5007-4b50-b2ad-85bb8dbc316f"
-  },
-  "schematics": {
-    "@schematics/angular": {
-      "component": {
-        "styleext": "scss",
-        "spec": false
-      },
-      "class": {
-        "spec": false
-      },
-      "directive": {
-        "spec": false
-      },
-      "guard": {
-        "spec": false
-      },
-      "module": {
-        "spec": false
-      },
-      "pipe": {
-        "spec": false
-      },
-      "service": {
-        "spec": false
-      }
-    }
   }
 }
