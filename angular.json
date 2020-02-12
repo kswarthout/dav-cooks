@@ -137,7 +137,11 @@
         },
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
-          "options": {}
+          "options": {
+            "baseHref": "https://kswarthout.github.io/dav-cooks/",
+            "name": "Dav Cooks",
+            "email": "kari.swarthout@gmail.com"
+          }
         }
       }
     }
