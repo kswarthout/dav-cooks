@@ -10,7 +10,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { RecipesModule } from '../recipes/recipes.module';
-import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { UserMenuComponent } from './user-menu/user-menu.component';
@@ -31,11 +30,7 @@ import { UserMenuComponent } from './user-menu/user-menu.component';
   ],
   declarations: [
     DashboardComponent,
-    UserMenuComponent,
-    AddRecipeComponent
-  ],
-  entryComponents: [
-    AddRecipeComponent
+    UserMenuComponent
   ]
 })
 export class DashboardModule { }
