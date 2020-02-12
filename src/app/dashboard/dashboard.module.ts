@@ -9,6 +9,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
+import { RecipesModule } from '../recipes/recipes.module';
 import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
@@ -25,6 +26,7 @@ import { UserMenuComponent } from './user-menu/user-menu.component';
     MatSidenavModule,
     MatToolbarModule,
     MatTooltipModule,
+    RecipesModule,
     DashboardRoutingModule
   ],
   declarations: [

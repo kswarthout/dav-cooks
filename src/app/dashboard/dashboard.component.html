@@ -12,8 +12,7 @@
         <dav-cooks-user-menu></dav-cooks-user-menu>
     </mat-toolbar>
 
-    <mat-sidenav-container class="sidenav__container"
-                           [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav-container class="sidenav__container">
         <mat-sidenav #snav
                      [mode]="mobileQuery.matches ? 'over' : 'side'"
                      [fixedInViewport]="mobileQuery.matches"
@@ -24,6 +23,8 @@
         </mat-sidenav>
 
         <mat-sidenav-content>
+
+            <!-- <dav-cooks-recipe-edit></dav-cooks-recipe-edit> -->
 
             <!-- ADD NEW RECIPE BUTTON -->
             <button mat-fab

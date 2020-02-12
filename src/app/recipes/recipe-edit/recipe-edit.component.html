@@ -1,1 +1,162 @@
-<p>recipe-edit works!</p>
+<div class="container">
+
+    <div class="form__header mat-elevation-z2">
+        <span class="mat-h2"
+              style="margin: 0; margin-left: 8px;">Edit Recipe</span>
+        <span class="fill__remaining__space"></span>
+        <span>
+            <button mat-icon-button
+                    matTooltip="Add Image"
+                    [matTooltipPosition]="'above'"
+                    tabindex="-1">
+                <mat-icon>add_photo_alternate</mat-icon>
+            </button>
+            <button mat-icon-button
+                    matTooltip="Add Recipe Source URL"
+                    [matTooltipPosition]="'above'"
+                    tabindex="-1">
+                <mat-icon>link</mat-icon>
+            </button>
+            <button mat-button
+                    tabindex="-1"
+                    (click)="onSave()">Save</button>
+            <button mat-button
+                    tabindex="-1"
+                    (click)="onCancel()">Cancel</button>
+        </span>
+    </div>
+
+    <form [formGroup]="recipeForm">
+
+        <div class="base__form underline__section">
+
+            <!-- NAME & IMAGE -->
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input matInput
+                           formControlName="name">
+                </mat-form-field>
+            </div>
+
+            <!-- COOK TIME / PREP TIME / YIELD -->
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Prep Time</mat-label>
+                    <span matPrefix>
+                        <mat-icon>access_time</mat-icon>
+                    </span>
+                    <input matInput
+                           formControlName="prepTime">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Cook Time</mat-label>
+                    <span matPrefix>
+                        <mat-icon>timer</mat-icon>
+                    </span>
+                    <input matInput
+                           formControlName="cookTime">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Yield</mat-label>
+                    <span matPrefix>
+                        <mat-icon>room_service</mat-icon>
+                    </span>
+                    <input matInput
+                           formControlName="yield">
+                </mat-form-field>
+            </div>
+
+            <!-- DESCRIPTION -->
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Description</mat-label>
+                    <input matInput
+                           formControlName="description"
+                           placeholder="Provide a brief description...">
+                </mat-form-field>
+            </div>
+
+            <!-- TAGS -->
+            <div formArrayName="tags">
+                <mat-form-field appearance="outline">
+                    <mat-chip-list #tagList>
+                        <mat-label>Tags</mat-label>
+                        <mat-chip *ngFor="let tag of tags.controls; let i=index"
+                                  [selectable]="false"
+                                  [removable]="true"
+                                  (removed)="removeTag(i)">
+                            {{tag.value}}
+                            <mat-icon matChipRemove>remove</mat-icon>
+                        </mat-chip>
+                        <input placeholder="Add tag..."
+                               [matChipInputFor]="tagList"
+                               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                               [matChipInputAddOnBlur]="true"
+                               (matChipInputTokenEnd)="addTag($event)">
+                        <span matSuffix>
+                            <mat-icon matTooltip="Add a tag that relates this recipe to others"
+                                      [matTooltipPosition]="'above'"
+                                      style="cursor: pointer;">info</mat-icon>
+                        </span>
+                    </mat-chip-list>
+                </mat-form-field>
+            </div>
+
+
+        </div>
+
+
+
+        <!-- INGREDIENTS -->
+        <div formArrayName="ingredients"
+             class="add__section underline__section">
+
+            <button mat-icon-button
+                    [disableRipple]="true"
+                    color="primary"
+                    (click)="addIngredient()"
+                    tabindex="-1">
+                <mat-icon>add</mat-icon>
+                Add Ingredient
+            </button>
+
+            <div *ngFor="let ingredient of ingredients.controls; let i=index">
+                <dav-cooks-ingredient-edit [ingredient]="ingredient"
+                                           (remove)="removeIngredient(i)"></dav-cooks-ingredient-edit>
+            </div>
+        </div>
+
+        <!-- STEPS -->
+        <div class="add__section underline__section"
+             formArrayName="steps">
+
+            <button mat-icon-button
+                    [disableRipple]="true"
+                    color="primary"
+                    (click)="addStep()"
+                    tabindex="-1">
+                <mat-icon>add</mat-icon>
+                Add Step
+            </button>
+
+            <div *ngFor="let step of steps.controls; let i=index">
+                <mat-form-field appearance="outline"
+                                style="width: 100%;">
+                    <mat-label>Step {{i+1}}</mat-label>
+                    <input matInput
+                           [formControlName]="i">
+                    <button mat-button
+                            matSuffix
+                            mat-icon-button
+                            matTooltip="Remove"
+                            [matTooltipPosition]="'before'"
+                            (click)="removeStep(i)">
+                        <mat-icon>remove_circle</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+        </div>
+
+    </form>
+</div>

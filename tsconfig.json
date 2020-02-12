@@ -20,7 +20,7 @@
     ],
     "paths": {
       "@models/*": [
-        "app/models/*"
+        "src/app/models/*"
       ]
     }
   }

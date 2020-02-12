@@ -1,4 +1,4 @@
-import { IngredientItem } from './ingredient.model';
+import { Ingredient } from './ingredient.model';
 
 export interface Recipe {
     author?: string;
@@ -7,9 +7,8 @@ export interface Recipe {
     description?: string;
     id?: string;
     image?: string;
-    ingredients?: IngredientItem[];
+    ingredients?: Ingredient[];
     name: string;
-    notes?: string;
     originalURL?: string;
     prepTime?: string;
     steps?: string[];

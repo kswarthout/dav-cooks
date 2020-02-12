@@ -3,8 +3,8 @@ import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChi
 import { MatDialog } from '@angular/material/dialog';
 import { MatSidenavContainer } from '@angular/material/sidenav';
 
+import { RecipeEditComponent } from '../recipes/recipe-edit/recipe-edit.component';
 import { AuthService } from '../services/auth.service';
-import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 
 @Component({
   selector: 'dav-cooks-dashboard',
@@ -42,7 +42,9 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   addRecipe() {
-    const dialogRef = this.dialog.open(AddRecipeComponent, {
+    const dialogRef = this.dialog.open(RecipeEditComponent, {
+      height: '500px',
+      disableClose: true
     });
     dialogRef.afterClosed().subscribe(result => {
 
