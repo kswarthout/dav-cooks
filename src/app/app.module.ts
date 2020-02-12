@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,9 +25,10 @@ import { LoginComponent } from './login/login.component';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     AppMaterialModule,
-    AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
     AngularFireStorageModule,
+    AngularFireDatabaseModule,
     NgxsModule.forRoot([], { developmentMode: !environment.production }),
     DashboardModule,
     AppRoutingModule,

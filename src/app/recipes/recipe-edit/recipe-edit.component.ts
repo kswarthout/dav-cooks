@@ -3,6 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Ingredient } from '@models/ingredient.model';
+import { Recipe } from '@models/recipe.model';
+
+import { RecipeService } from '../recipe.service';
 
 @Component({
   selector: 'dav-cooks-recipe-edit',
@@ -25,17 +29,54 @@ export class RecipeEditComponent implements OnInit {
     originalURL: ['']
   });
 
-  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<RecipeEditComponent>) { }
+  constructor(
+    private fb: FormBuilder,
+    public dialogRef: MatDialogRef<RecipeEditComponent>,
+    private recipeService: RecipeService
+  ) { }
 
   ngOnInit(): void {
   }
 
   onSave() {
-
+    // console.log(this.convertFormModel());
+    this.recipeService.addRecipe(this.convertFormModel());
   }
 
   onCancel() {
     this.dialogRef.close();
+  }
+
+  private convertFormModel(): Recipe {
+
+    let ing: Ingredient[] = [];
+    this.ingredients.controls.forEach(c => {
+      ing.push(c.value);
+    });
+
+    let steps: string[] = [];
+    this.steps.controls.forEach(c => {
+      steps.push(c.value);
+    });
+
+    let tags: string[] = [];
+    this.tags.controls.forEach(c => {
+      tags.push(c.value);
+    });
+
+    const r: Recipe = {
+      name: this.recipeForm.get('name').value,
+      cookTime: this.recipeForm.get('cookTime').value,
+      prepTime: this.recipeForm.get('prepTime').value,
+      yield: this.recipeForm.get('yield').value,
+      description: this.recipeForm.get('description').value,
+      image: this.recipeForm.get('image').value,
+      originalURL: this.recipeForm.get('originalURL').value,
+      ingredients: ing,
+      steps: steps,
+      tags: tags
+    }
+    return r;
   }
 
   get ingredients() { return this.recipeForm.get('ingredients') as FormArray; }
