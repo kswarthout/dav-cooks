@@ -53,11 +53,19 @@ export class ImageEditComponent implements OnInit, OnDestroy {
     this.task = this.storage.uploadRecipeImage(event);
     this.uploadProgress$ = this.task.percentageChanges();
     this.task.then(result => {
+      this.snackbar.open('Success! File added.', 'DISMISS', {
+        duration: 2500,
+        verticalPosition: 'top'
+      });
       result.ref.getDownloadURL().then(url => {
         this.imageForm.patchValue({ url: url });
       });
     }).catch((err) => {
       console.log(err);
+      this.snackbar.open('Error uploading file.', 'DISMISS', {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
     });
   }
 
