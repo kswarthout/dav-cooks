@@ -10,6 +10,7 @@ export class IngredientEditComponent implements OnInit {
 
   @Input('ingredient') ingredientForm: FormGroup;
   @Output('remove') removeItem = new EventEmitter();
+  @Output('add') addItem = new EventEmitter();
 
   constructor(private fb: FormBuilder) {
   }
@@ -17,8 +18,12 @@ export class IngredientEditComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  remove() {
-    this.removeItem.emit();
+  remove() { this.removeItem.emit(); }
+
+  onKeydown(event) {
+    if (event.key === "Enter") {
+      this.addItem.emit();
+    }
   }
 
 }

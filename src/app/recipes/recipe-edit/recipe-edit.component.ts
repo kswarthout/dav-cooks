@@ -1,10 +1,9 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder } from '@angular/forms';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Ingredient } from '@models/ingredient.model';
-import { Recipe } from '@models/recipe.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { RecipeService } from '../recipe.service';
 
@@ -17,7 +16,7 @@ export class RecipeEditComponent implements OnInit {
 
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   recipeForm = this.fb.group({
-    name: [''],
+    name: ['', Validators.required],
     description: [''],
     image: [''],
     cookTime: [''],
@@ -32,6 +31,7 @@ export class RecipeEditComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<RecipeEditComponent>,
+    private snackBar: MatSnackBar,
     private recipeService: RecipeService
   ) { }
 
@@ -39,44 +39,17 @@ export class RecipeEditComponent implements OnInit {
   }
 
   onSave() {
-    // console.log(this.convertFormModel());
-    this.recipeService.addRecipe(this.convertFormModel());
+    if (this.recipeForm.invalid) {
+      this.snackBar.open('Recipe is incomplete! Please provide values for the required fields.', 'DISMISS', {
+        duration: 5000
+      });
+      return;
+    }
+    this.recipeService.addRecipe(this.recipeForm.value);
   }
 
   onCancel() {
     this.dialogRef.close();
-  }
-
-  private convertFormModel(): Recipe {
-
-    let ing: Ingredient[] = [];
-    this.ingredients.controls.forEach(c => {
-      ing.push(c.value);
-    });
-
-    let steps: string[] = [];
-    this.steps.controls.forEach(c => {
-      steps.push(c.value);
-    });
-
-    let tags: string[] = [];
-    this.tags.controls.forEach(c => {
-      tags.push(c.value);
-    });
-
-    const r: Recipe = {
-      name: this.recipeForm.get('name').value,
-      cookTime: this.recipeForm.get('cookTime').value,
-      prepTime: this.recipeForm.get('prepTime').value,
-      yield: this.recipeForm.get('yield').value,
-      description: this.recipeForm.get('description').value,
-      image: this.recipeForm.get('image').value,
-      originalURL: this.recipeForm.get('originalURL').value,
-      ingredients: ing,
-      steps: steps,
-      tags: tags
-    }
-    return r;
   }
 
   get ingredients() { return this.recipeForm.get('ingredients') as FormArray; }
@@ -85,24 +58,13 @@ export class RecipeEditComponent implements OnInit {
 
   addIngredient() {
     this.ingredients.push(this.fb.group({
-      name: [''],
-      quantity: [''],
-      type: [''],
-      note: [''],
-      link: ['']
+      name: ['', Validators.required],
+      quantity: ['', Validators.required]
     }));
   }
 
   addStep() {
-    this.steps.push(this.fb.control(''));
-  }
-
-  removeIngredient(i: number) {
-    this.ingredients.removeAt(i);
-  }
-
-  removeStep(i: number) {
-    this.steps.removeAt(i);
+    this.steps.push(this.fb.control('', [Validators.required]));
   }
 
   addTag(event: MatChipInputEvent): void {
@@ -119,8 +81,14 @@ export class RecipeEditComponent implements OnInit {
 
   }
 
-  removeTag(i: number) {
-    this.tags.removeAt(i);
+  removeIngredient(i: number) { this.ingredients.removeAt(i); }
+  removeStep(i: number) { this.steps.removeAt(i); }
+  removeTag(i: number) { this.tags.removeAt(i); }
+
+  onStepKeydown(event) {
+    if (event.key === "Enter") {
+      this.addStep();
+    }
   }
 
 }

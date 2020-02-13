@@ -7,6 +7,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { IngredientEditComponent } from './ingredient-edit/ingredient-edit.component';
@@ -28,6 +29,7 @@ import { RecipesComponent } from './recipes.component';
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    MatSnackBarModule,
     MatTooltipModule,
     RecipesRoutingModule
   ],

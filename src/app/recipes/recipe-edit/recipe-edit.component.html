@@ -32,16 +32,22 @@
 
             <!-- NAME & IMAGE -->
             <div>
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="fill">
                     <mat-label>Name</mat-label>
                     <input matInput
-                           formControlName="name">
+                           formControlName="name"
+                           id="name"
+                           name="name"
+                           required>
+                    <mat-error *ngIf="recipeForm.get('name').errors.required">
+                        Name is required
+                    </mat-error>
                 </mat-form-field>
             </div>
 
             <!-- COOK TIME / PREP TIME / YIELD -->
             <div>
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="fill">
                     <mat-label>Prep Time</mat-label>
                     <span matPrefix>
                         <mat-icon>access_time</mat-icon>
@@ -49,7 +55,7 @@
                     <input matInput
                            formControlName="prepTime">
                 </mat-form-field>
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="fill">
                     <mat-label>Cook Time</mat-label>
                     <span matPrefix>
                         <mat-icon>timer</mat-icon>
@@ -57,7 +63,7 @@
                     <input matInput
                            formControlName="cookTime">
                 </mat-form-field>
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="fill">
                     <mat-label>Yield</mat-label>
                     <span matPrefix>
                         <mat-icon>room_service</mat-icon>
@@ -69,7 +75,7 @@
 
             <!-- DESCRIPTION -->
             <div>
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="fill">
                     <mat-label>Description</mat-label>
                     <input matInput
                            formControlName="description"
@@ -79,7 +85,7 @@
 
             <!-- TAGS -->
             <div formArrayName="tags">
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="fill">
                     <mat-chip-list #tagList>
                         <mat-label>Tags</mat-label>
                         <mat-chip *ngFor="let tag of tags.controls; let i=index"
@@ -106,8 +112,6 @@
 
         </div>
 
-
-
         <!-- INGREDIENTS -->
         <div formArrayName="ingredients"
              class="add__section underline__section">
@@ -123,6 +127,7 @@
 
             <div *ngFor="let ingredient of ingredients.controls; let i=index">
                 <dav-cooks-ingredient-edit [ingredient]="ingredient"
+                                           (add)="addIngredient()"
                                            (remove)="removeIngredient(i)"></dav-cooks-ingredient-edit>
             </div>
         </div>
@@ -141,19 +146,26 @@
             </button>
 
             <div *ngFor="let step of steps.controls; let i=index">
-                <mat-form-field appearance="outline"
+                <mat-form-field appearance="fill"
                                 style="width: 100%;">
                     <mat-label>Step {{i+1}}</mat-label>
                     <input matInput
-                           [formControlName]="i">
+                           [formControlName]="i"
+                           (keydown)="onStepKeydown($event)"
+                           required>
                     <button mat-button
                             matSuffix
                             mat-icon-button
                             matTooltip="Remove"
                             [matTooltipPosition]="'before'"
-                            (click)="removeStep(i)">
+                            (click)="removeStep(i)"
+                            tabindex="-1">
                         <mat-icon>remove_circle</mat-icon>
                     </button>
+                    <mat-error
+                               *ngIf="steps.controls[i].errors?.required && (steps.controls[i].touched || steps.controls[i].dirty)">
+                        Step is required
+                    </mat-error>
                 </mat-form-field>
             </div>
         </div>

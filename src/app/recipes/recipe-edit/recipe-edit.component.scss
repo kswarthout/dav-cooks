@@ -1,5 +1,4 @@
 .container {
-    background: #f3f3f3;
 
     .form__header {
         display: flex;
@@ -8,8 +7,6 @@
         padding: 8px;
         background: #2196f3;
         color: #fff;
-        border-top-left-radius: 6px;
-        border-top-right-radius: 6px;
 
         button {
             margin-left: 8px;
@@ -31,13 +28,14 @@
                 flex-grow: 1;
 
                 mat-icon {
-                    margin-right: 6px;
+                    margin-right: 8px;
                 }
             }
         }
     }
 
     .add__section {
+        padding: 8px;
 
         button {
             width: 100%;
