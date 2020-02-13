@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { takeUntil } from 'rxjs/operators';
 import { BaseUnsubscribeComponent } from 'src/app/shared/base-unsubscribe/base-unsubscribe.component';
@@ -12,9 +12,10 @@ import { ChangesNotSavedComponent } from 'src/app/shared/changes-not-saved/chang
 })
 export class OrigUrlEditComponent extends BaseUnsubscribeComponent implements OnInit {
 
+  readonly reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
   changed: boolean = false;
   urlForm = this.fb.group({
-    url: ['']
+    url: ['', Validators.pattern(this.reg)]
   });
 
   constructor(

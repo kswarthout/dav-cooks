@@ -9,13 +9,22 @@
                       [value]="progress">
     </mat-progress-bar>
     <form [formGroup]="imageForm">
-        <label class="mat-body">Image URL</label>
-        <input formControlName="url">
+        <label class="mat-body"
+               style="margin-bottom: 8px;">Image URL</label>
+        <input formControlName="url"
+               id="imageURL"
+               [style.margin]="!(url.valid || url.pristine) ? 0 : 8">
+        <div [hidden]="url.valid || url.pristine"
+             class="alert alert__danger mat-body-1">
+            Invalid URL
+        </div>
 
-        <label class="mat-body">Upload New Image</label>
+        <label class="mat-body"
+               style="margin-top: 8px;">Upload New Image</label>
         <input type="file"
                (change)="upload($event)"
-               accept=".png,.jpg">
+               accept=".png,.jpg"
+               tabindex="-1">
     </form>
 </div>
 <div mat-dialog-actions>
@@ -23,11 +32,13 @@
             color="primary"
             (click)="cancel()"
             matTooltip="Close Dialog"
-            [matTooltipPosition]="'above'">Cancel</button>
+            [matTooltipPosition]="'above'"
+            tabindex="-1">Cancel</button>
     <button mat-raised-button
             color="primary"
             (click)="save()"
             matTooltip="Save Changes"
             [matTooltipPosition]="'above'"
-            [disabled]="!changed">Save</button>
+            [disabled]="!changed"
+            tabindex="-1">Save</button>
 </div>

@@ -2,7 +2,7 @@
     <h2 mat-dialog-title
         style="margin:0;">Original URL</h2>
     <mat-icon style="margin-left:8px; color: #2196f3;"
-              matTooltip="Provide a URL link to an original recipe"
+              matTooltip="Provide a link to an original recipe!"
               [matTooltipPosition]="'after'">info</mat-icon>
 </span>
 <mat-dialog-content style="display: flex; flex-direction: column;">
@@ -11,7 +11,9 @@
                         style="width: 100%;">
             <mat-label>URL</mat-label>
             <input matInput
-                   type="text">
+                   type="text"
+                   formControlName="url">
+            <mat-error *ngIf="url.invalid">Invalid URL</mat-error>
         </mat-form-field>
     </form>
 </mat-dialog-content>
@@ -21,11 +23,13 @@
             mat-dialog-close
             (click)="cancel()"
             matTooltip="Close Dialog"
-            [matTooltipPosition]="'above'">Cancel</button>
+            [matTooltipPosition]="'above'"
+            tabindex="-1">Cancel</button>
     <button mat-raised-button
             color="primary"
             (click)="save()"
             matTooltip="Save Changes"
             [matTooltipPosition]="'above'"
-            [disabled]="!changed">Save</button>
+            [disabled]="!changed"
+            tabindex="-1">Save</button>
 </mat-dialog-actions>

@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AngularFireUploadTask } from 'angularfire2/storage';
@@ -16,12 +16,13 @@ import { ChangesNotSavedComponent } from 'src/app/shared/changes-not-saved/chang
 })
 export class ImageEditComponent extends BaseUnsubscribeComponent implements OnInit {
 
+  readonly reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
   task: AngularFireUploadTask;
   uploadProgress$: Observable<number>;
   changed: boolean = false;
 
   imageForm = this.fb.group({
-    url: ['']
+    url: ['', Validators.pattern(this.reg)]
   });
 
   constructor(

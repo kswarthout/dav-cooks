@@ -10,6 +10,19 @@ body {
     height: 100%;
 }
 
+.alert {
+    padding: 8px;
+    border: 1px solid;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.alert__danger {
+    border-color: #a94442;
+    color: #a94442;
+    background: #ffe6e6;
+}
+
 .app__full__bleed__dialog .mat-dialog-container {
     padding: 0;
 }
