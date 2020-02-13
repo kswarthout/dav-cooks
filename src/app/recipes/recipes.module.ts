@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { ImageEditComponent } from './image-edit/image-edit.component';
 import { IngredientEditComponent } from './ingredient-edit/ingredient-edit.component';
+import { OrigUrlEditComponent } from './orig-url-edit/orig-url-edit.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
@@ -18,7 +19,8 @@ import { RecipesComponent } from './recipes.component';
     RecipeEditComponent,
     RecipeDetailComponent,
     IngredientEditComponent,
-    ImageEditComponent
+    ImageEditComponent,
+    OrigUrlEditComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +33,8 @@ import { RecipesComponent } from './recipes.component';
   ],
   entryComponents: [
     RecipeEditComponent,
-    ImageEditComponent
+    ImageEditComponent,
+    OrigUrlEditComponent
   ]
 })
 export class RecipesModule { }

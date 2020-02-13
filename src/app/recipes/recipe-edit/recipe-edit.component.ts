@@ -6,6 +6,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { ImageEditComponent } from '../image-edit/image-edit.component';
+import { OrigUrlEditComponent } from '../orig-url-edit/orig-url-edit.component';
 import { RecipeService } from '../recipe.service';
 
 @Component({
@@ -58,6 +59,7 @@ export class RecipeEditComponent implements OnInit {
   get steps() { return this.recipeForm.get('steps') as FormArray; }
   get tags() { return this.recipeForm.get('tags') as FormArray; }
   get image() { return this.recipeForm.get('image') as FormControl; }
+  get originalURL() { return this.recipeForm.get('originalURL') as FormControl; }
 
   addIngredient() {
     this.ingredients.push(this.fb.group({
@@ -76,6 +78,21 @@ export class RecipeEditComponent implements OnInit {
       if (result) {
         if (result.changed && result.url) {
           this.recipeForm.patchValue({ image: result.url });
+        }
+      }
+    });
+  }
+
+  addOrigURL() {
+    const ref = this.dialog.open(OrigUrlEditComponent, {
+      data: { originalURL: this.originalURL.value },
+      width: '350px'
+    });
+
+    ref.afterClosed().subscribe(result => {
+      if (result) {
+        if (result.changed && result.url) {
+          this.recipeForm.patchValue({ originalURL: result.url });
         }
       }
     });

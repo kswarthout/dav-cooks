@@ -1,11 +1,12 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AngularFireUploadTask } from 'angularfire2/storage';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { StorageService } from 'src/app/services/storage.service';
+import { BaseUnsubscribeComponent } from 'src/app/shared/base-unsubscribe/base-unsubscribe.component';
 import { ChangesNotSavedComponent } from 'src/app/shared/changes-not-saved/changes-not-saved.component';
 
 @Component({
@@ -13,9 +14,8 @@ import { ChangesNotSavedComponent } from 'src/app/shared/changes-not-saved/chang
   templateUrl: './image-edit.component.html',
   styleUrls: ['./image-edit.component.scss']
 })
-export class ImageEditComponent implements OnInit, OnDestroy {
+export class ImageEditComponent extends BaseUnsubscribeComponent implements OnInit {
 
-  private unsubscribe$ = new Subject<void>();
   task: AngularFireUploadTask;
   uploadProgress$: Observable<number>;
   changed: boolean = false;
@@ -31,7 +31,9 @@ export class ImageEditComponent implements OnInit, OnDestroy {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private storage: StorageService,
     private snackbar: MatSnackBar
-  ) { }
+  ) {
+    super();
+  }
 
   ngOnInit(): void {
     this.imageForm.patchValue({ url: this.data.imageUrl }, { emitEvent: false });
@@ -40,11 +42,6 @@ export class ImageEditComponent implements OnInit, OnDestroy {
       .subscribe(changes => {
         this.changed = (changes.url !== this.data.imageUrl);
       });
-  }
-
-  ngOnDestroy() {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
   }
 
   get url() { return this.imageForm.get('url') as FormControl; }
