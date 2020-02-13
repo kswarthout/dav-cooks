@@ -1,10 +1,11 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+import { ImageEditComponent } from '../image-edit/image-edit.component';
 import { RecipeService } from '../recipe.service';
 
 @Component({
@@ -30,6 +31,7 @@ export class RecipeEditComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    public dialog: MatDialog,
     public dialogRef: MatDialogRef<RecipeEditComponent>,
     private snackBar: MatSnackBar,
     private recipeService: RecipeService
@@ -55,12 +57,28 @@ export class RecipeEditComponent implements OnInit {
   get ingredients() { return this.recipeForm.get('ingredients') as FormArray; }
   get steps() { return this.recipeForm.get('steps') as FormArray; }
   get tags() { return this.recipeForm.get('tags') as FormArray; }
+  get image() { return this.recipeForm.get('image') as FormControl; }
 
   addIngredient() {
     this.ingredients.push(this.fb.group({
       name: ['', Validators.required],
       quantity: ['', Validators.required]
     }));
+  }
+
+  addImage() {
+    const ref = this.dialog.open(ImageEditComponent, {
+      data: { imageUrl: this.image.value },
+      width: '350px'
+    });
+
+    ref.afterClosed().subscribe(result => {
+      if (result) {
+        if (result.changed && result.url) {
+          this.recipeForm.patchValue({ image: result.url });
+        }
+      }
+    });
   }
 
   addStep() {

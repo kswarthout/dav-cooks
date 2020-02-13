@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>Unsaved Changes</h2>
+<mat-dialog-content>
+        <p class="mat-body">Changes have been made that are not yet saved. Would you like to discard changes?</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+        <button mat-raised-button
+                color="primary"
+                [mat-dialog-close]="false"
+                style="margin-right: 8px;">Cancel</button>
+        <button mat-raised-button
+                color="primary"
+                [mat-dialog-close]="true">Discard Changes</button>
+</mat-dialog-actions>

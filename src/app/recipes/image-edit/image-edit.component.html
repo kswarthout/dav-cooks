@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>Recipe Image</h1>
+<div mat-dialog-content
+     style="border-top: 1px solid #9e9e9e;">
+    <p class="mat-body">Choose your recipe image. Use the URL input to provide a link to an existing image, or upload a
+        new image file.</p>
+    <mat-progress-bar *ngIf="uploadProgress$ | async as progress"
+                      color="primary"
+                      mode="buffer"
+                      [value]="progress">
+    </mat-progress-bar>
+    <form [formGroup]="imageForm">
+        <label class="mat-body">Image URL</label>
+        <input formControlName="url">
+
+        <label class="mat-body">Upload New Image</label>
+        <input type="file"
+               (change)="upload($event)"
+               accept=".png,.jpg">
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button
+            color="primary"
+            (click)="cancel()"
+            matTooltip="Close Dialog"
+            [matTooltipPosition]="'above'">Cancel</button>
+    <button mat-raised-button
+            color="primary"
+            (click)="save()"
+            matTooltip="Save Changes"
+            [matTooltipPosition]="'above'"
+            [disabled]="!changed">Save</button>
+</div>
