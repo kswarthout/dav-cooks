@@ -20,7 +20,7 @@
                        formControlName="name"
                        (keydown)="onKeydown($event)"
                        required>
-                <mat-error *ngIf="ingredientForm.get('name').errors.required">
+                <mat-error *ngIf="ingredientForm.get('name').invalid">
                     Name is required
                 </mat-error>
             </mat-form-field>
@@ -30,7 +30,7 @@
                        formControlName="quantity"
                        (keydown)="onKeydown($event)"
                        required>
-                <mat-error *ngIf="ingredientForm.get('quantity').errors.required">
+                <mat-error *ngIf="ingredientForm.get('quantity').invalid">
                     Quantity is required
                 </mat-error>
             </mat-form-field>

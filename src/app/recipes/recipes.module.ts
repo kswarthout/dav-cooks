@@ -8,6 +8,7 @@ import { IngredientEditComponent } from './ingredient-edit/ingredient-edit.compo
 import { OrigUrlEditComponent } from './orig-url-edit/orig-url-edit.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
+import { RecipeListItemComponent } from './recipe-list-item/recipe-list-item.component';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { RecipesRoutingModule } from './recipes-routing.module';
 import { RecipesComponent } from './recipes.component';
@@ -20,7 +21,8 @@ import { RecipesComponent } from './recipes.component';
     RecipeDetailComponent,
     IngredientEditComponent,
     ImageEditComponent,
-    OrigUrlEditComponent
+    OrigUrlEditComponent,
+    RecipeListItemComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +31,8 @@ import { RecipesComponent } from './recipes.component';
     RecipesRoutingModule
   ],
   exports: [
-    RecipeEditComponent
+    RecipeEditComponent,
+    RecipeListComponent
   ],
   entryComponents: [
     RecipeEditComponent,

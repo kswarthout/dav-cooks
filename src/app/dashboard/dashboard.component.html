@@ -12,7 +12,8 @@
         <dav-cooks-user-menu></dav-cooks-user-menu>
     </mat-toolbar>
 
-    <mat-sidenav-container class="sidenav__container">
+    <mat-sidenav-container class="sidenav__container"
+                           [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
         <mat-sidenav #snav
                      [mode]="mobileQuery.matches ? 'over' : 'side'"
                      [fixedInViewport]="mobileQuery.matches"
@@ -24,17 +25,21 @@
 
         <mat-sidenav-content>
 
-            <!-- <dav-cooks-recipe-edit></dav-cooks-recipe-edit> -->
+            <div *ngIf="auth.user | async">
 
-            <!-- ADD NEW RECIPE BUTTON -->
-            <button mat-fab
-                    color="primary"
-                    class="add__recipe__btn"
-                    matTooltip="Create new recipe!"
-                    [matTooltipPosition]="'before'"
-                    (click)="addRecipe()">
-                <mat-icon>add</mat-icon>
-            </button>
+                <dav-cooks-recipe-list></dav-cooks-recipe-list>
+
+                <!-- ADD NEW RECIPE BUTTON -->
+                <button mat-fab
+                        color="primary"
+                        class="add__recipe__btn"
+                        matTooltip="Create new recipe!"
+                        [matTooltipPosition]="'before'"
+                        (click)="addRecipe()">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+
         </mat-sidenav-content>
 
     </mat-sidenav-container>

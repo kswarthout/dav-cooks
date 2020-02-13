@@ -1,0 +1,15 @@
+<div class="list__item">
+    <mat-checkbox [(ngModel)]="checked"
+                  (ngModelChange)="selected()">{{recipe.name}}</mat-checkbox>
+    <span class="fill__remaining__space"></span>
+    <button mat-icon-button
+            color="primary"
+            matTooltip="View">
+        <mat-icon>open_in_new</mat-icon>
+    </button>
+    <button mat-icon-button
+            color="primary"
+            matTooltip="Edit">
+        <mat-icon>edit</mat-icon>
+    </button>
+</div>

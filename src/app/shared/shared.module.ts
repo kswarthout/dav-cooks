@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppMaterialModule } from './app-material.module';
 import { BaseUnsubscribeComponent } from './base-unsubscribe/base-unsubscribe.component';
@@ -9,6 +9,7 @@ import { ChangesNotSavedComponent } from './changes-not-saved/changes-not-saved.
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     AppMaterialModule
   ],
@@ -17,9 +18,10 @@ import { ChangesNotSavedComponent } from './changes-not-saved/changes-not-saved.
     BaseUnsubscribeComponent
   ],
   exports: [
+    FormsModule,
+    ReactiveFormsModule,
     AppMaterialModule,
     ChangesNotSavedComponent,
-    ReactiveFormsModule,
     BaseUnsubscribeComponent
   ],
   entryComponents: [

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -10,12 +11,14 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatStepperModule } from '@angular/material/stepper';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
     imports: [
         MatButtonModule,
+        MatCheckboxModule,
         MatChipsModule,
         MatDialogModule,
         MatFormFieldModule,
@@ -25,12 +28,14 @@ import { MatTooltipModule } from '@angular/material/tooltip';
         MatMenuModule,
         MatProgressBarModule,
         MatSnackBarModule,
+        MatStepperModule,
         MatSidenavModule,
         MatToolbarModule,
         MatTooltipModule,
     ],
     exports: [
         MatButtonModule,
+        MatCheckboxModule,
         MatChipsModule,
         MatDialogModule,
         MatFormFieldModule,
@@ -40,6 +45,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
         MatMenuModule,
         MatProgressBarModule,
         MatSnackBarModule,
+        MatStepperModule,
         MatSidenavModule,
         MatToolbarModule,
         MatTooltipModule,
