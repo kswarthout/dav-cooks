@@ -263,7 +263,7 @@ export class RecipeEditComponent extends BaseUnsubscribeComponent implements OnI
 
   onStepKeydown(event) {
     if (!this.stepsFormGroup.invalid) {
-      if (event.key === "Enter" || event.key === "Tab") {
+      if (event.key === "Tab") {
         this.addStep();
       }
     }
