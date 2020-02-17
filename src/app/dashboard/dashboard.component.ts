@@ -6,6 +6,11 @@ import { MatSidenavContainer } from '@angular/material/sidenav';
 import { RecipeEditComponent } from '../recipes/recipe-edit/recipe-edit.component';
 import { AuthService } from '../services/auth.service';
 
+export interface Link {
+  label: string;
+  href: string;
+}
+
 @Component({
   selector: 'dav-cooks-dashboard',
   templateUrl: './dashboard.component.html',
@@ -13,6 +18,9 @@ import { AuthService } from '../services/auth.service';
 })
 export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
 
+  links: Link[] = [
+    { label: 'Recipe Box', href: `recipe-box` }
+  ];
   mobileQuery: MediaQueryList;
 
   private _mobileQueryListener: () => void;

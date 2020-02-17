@@ -18,8 +18,13 @@
                      [mode]="mobileQuery.matches ? 'over' : 'side'"
                      [fixedInViewport]="mobileQuery.matches"
                      fixedTopGap="56"
-                     style="min-width: 250px; background: red;">
+                     style="min-width: 250px;"
+                     opened>
             <mat-nav-list>
+                <mat-list-item *ngFor="let link of links">
+                    <a matLine
+                       [routerLink]="link.href">{{ link.label }}</a>
+                </mat-list-item>
             </mat-nav-list>
         </mat-sidenav>
 
