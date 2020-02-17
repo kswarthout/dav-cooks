@@ -11,7 +11,6 @@ export class RecipeValidators {
 
     static stepsValidator(items: FormArray): any {
         items.value.forEach(element => {
-            console.log(element);
             return element && element === '' ? { missingValues: true } : null;
         });
         return null;
