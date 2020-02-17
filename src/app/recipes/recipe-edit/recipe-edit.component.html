@@ -131,18 +131,22 @@
         <mat-step [stepControl]="ingrdientsFormGroup">
             <form [formGroup]="ingrdientsFormGroup">
                 <ng-template matStepLabel>Ingredients</ng-template>
-                <div formArrayName="ingredients">
+                <div formArrayName="ingredients"
+                     class="add__section">
                     <div *ngFor="let ingredient of ingredients.controls; let i=index">
                         <dav-cooks-ingredient-edit [ingredient]="ingredient"
+                                                   [index]="i"
                                                    (add)="addIngredient()"
-                                                   (remove)="removeIngredient(i)"></dav-cooks-ingredient-edit>
+                                                   (remove)="removeIngredient(i)"
+                                                   (move-up)="moveIngredient(-1, i)"
+                                                   (move-down)="moveIngredient(1, i)"></dav-cooks-ingredient-edit>
                     </div>
-                    <button mat-icon-button
+                    <button mat-flat-button
                             [disableRipple]="true"
                             color="primary"
                             (click)="addIngredient()"
                             tabindex="-1"
-                            [disabled]="isSaving">
+                            [disabled]="isSaving || ingredients.invalid">
                         <mat-icon>add</mat-icon>
                         Add Ingredient
                     </button>
@@ -185,7 +189,7 @@
                         </mat-form-field>
                     </div>
 
-                    <button mat-icon-button
+                    <button mat-flat-button
                             [disableRipple]="true"
                             color="primary"
                             (click)="addStep()"

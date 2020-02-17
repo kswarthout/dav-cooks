@@ -9,8 +9,11 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class IngredientEditComponent implements OnInit {
 
   @Input('ingredient') ingredientForm: FormGroup;
+  @Input('index') index: number;
   @Output('remove') removeItem = new EventEmitter();
   @Output('add') addItem = new EventEmitter();
+  @Output('move-up') moveUp = new EventEmitter();
+  @Output('move-down') moveDown = new EventEmitter();
 
   constructor(private fb: FormBuilder) {
   }
@@ -18,7 +21,12 @@ export class IngredientEditComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  get name() { return this.ingredientForm.get('name'); }
+  get quantity() { return this.ingredientForm.get('quantity'); }
+
   remove() { this.removeItem.emit(); }
+  up() { this.moveUp.emit(); }
+  down() { this.moveDown.emit(); }
 
   onKeydown(event) {
     if (event.key === "Enter") {

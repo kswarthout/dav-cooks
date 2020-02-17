@@ -1,26 +1,41 @@
 <div class="ingredient__item">
 
     <div style="display: flex; align-items: baseline;">
-        <h4 class="mat-h4">Edit Ingredient</h4>
+        <h4 class="mat-h4"
+            style="color: #3f51b5;">Ingredient {{index + 1}}</h4>
         <button mat-icon-button
                 matTooltip="Remove"
-                [matTooltipPosition]="'after'"
+                [matTooltipPosition]="'above'"
                 (click)="remove()"
                 tabindex="-1">
             <mat-icon>remove_circle</mat-icon>
         </button>
+        <button mat-icon-button
+                matTooltip="Move-Up"
+                [matTooltipPosition]="'above'"
+                (click)="up()"
+                tabindex="-1">
+            <mat-icon>keyboard_arrow_up</mat-icon>
+        </button>
+        <button mat-icon-button
+                matTooltip="Move-Down"
+                [matTooltipPosition]="'above'"
+                (click)="down()"
+                tabindex="-1">
+            <mat-icon>keyboard_arrow_down</mat-icon>
+        </button>
     </div>
 
     <form [formGroup]="ingredientForm">
-
         <div>
             <mat-form-field appearance="fill">
                 <mat-label>Name</mat-label>
                 <input matInput
+                       id="name"
                        formControlName="name"
                        (keydown)="onKeydown($event)"
                        required>
-                <mat-error *ngIf="ingredientForm.get('name').invalid">
+                <mat-error *ngIf="name.errors?.required">
                     Name is required
                 </mat-error>
             </mat-form-field>
@@ -30,7 +45,7 @@
                        formControlName="quantity"
                        (keydown)="onKeydown($event)"
                        required>
-                <mat-error *ngIf="ingredientForm.get('quantity').invalid">
+                <mat-error *ngIf="quantity.errors?.required">
                     Quantity is required
                 </mat-error>
             </mat-form-field>

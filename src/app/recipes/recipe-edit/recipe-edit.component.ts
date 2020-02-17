@@ -4,6 +4,7 @@ import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { RecipeValidators } from '@directives/recipe-validators';
 import { Ingredient } from '@models/ingredient.model';
 import { Recipe } from '@models/recipe.model';
 import { takeUntil } from 'rxjs/operators';
@@ -52,7 +53,7 @@ export class RecipeEditComponent extends BaseUnsubscribeComponent implements OnI
   });
 
   ingrdientsFormGroup = this.fb.group({
-    ingredients: this.fb.array([])
+    ingredients: this.fb.array([], { validators: RecipeValidators.ingredientsValidator })
   });
 
   stepsFormGroup = this.fb.group({
@@ -189,6 +190,20 @@ export class RecipeEditComponent extends BaseUnsubscribeComponent implements OnI
       name: ['', Validators.required],
       quantity: ['', Validators.required]
     }));
+  }
+
+  moveIngredient(shift: number, currentIndex: number) {
+    let newIndex = currentIndex + shift;
+    if (newIndex === -1) {
+      newIndex = this.ingredients.length - 1;
+    }
+    else if (newIndex === this.ingredients.length) {
+      newIndex = 0;
+    }
+
+    const currentIngredient = this.ingredients.at(currentIndex);
+    this.ingredients.removeAt(currentIndex);
+    this.ingredients.insert(newIndex, currentIngredient);
   }
 
   addImage() {
