@@ -1,7 +1,7 @@
 <div class="container">
 
     <mat-toolbar color="primary"
-                 class="toolbar"
+                 class="toolbar mat-elevation-z8"
                  [class.is__mobile]="mobileQuery.matches">
         <button mat-icon-button
                 (click)="snav.toggle()">
@@ -18,8 +18,9 @@
                      [mode]="mobileQuery.matches ? 'over' : 'side'"
                      [fixedInViewport]="mobileQuery.matches"
                      fixedTopGap="56"
-                     style="min-width: 250px;"
-                     opened>
+                     style="min-width: 200px; background: #f2f2f2;"
+                     opened
+                     class="mat-elevation-z2">
             <mat-nav-list>
                 <mat-list-item *ngFor="let link of links">
                     <a matLine
@@ -32,8 +33,8 @@
 
             <div *ngIf="auth.user | async">
 
-                <!-- <dav-cooks-recipe-list></dav-cooks-recipe-list> -->
                 <router-outlet></router-outlet>
+
                 <!-- ADD NEW RECIPE BUTTON -->
                 <button mat-fab
                         color="primary"

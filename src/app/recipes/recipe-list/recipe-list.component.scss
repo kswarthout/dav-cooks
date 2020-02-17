@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    flex-direction: column;
+
+    .header {
+        margin: 0;
+        background: #3f51b5;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        color: #fff;
+    }
+
+    input {
+        padding: 8px;
+        border-radius: 8px;
+        border: 1px solid rgba(32, 32, 32, 0.22);
+    }
+}

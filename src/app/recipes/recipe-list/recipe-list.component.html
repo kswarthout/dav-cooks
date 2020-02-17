@@ -1,4 +1,10 @@
-<h2>Recipe List</h2>
-<div *ngFor="let r of recipeService.userRecipes | async">
-    <dav-cooks-recipe-list-item [recipe]="r"></dav-cooks-recipe-list-item>
+<div class="container">
+    <div class="header mat-elevation-z8">
+        <h2 class="mat-h2">All Recipes</h2>
+        <input placeholder="search...">
+    </div>
+    <div *ngFor="let r of recipeService.userRecipes | async"
+         style="margin-top: 8px;">
+        <dav-cooks-recipe-list-item [recipe]="r"></dav-cooks-recipe-list-item>
+    </div>
 </div>

@@ -12,13 +12,6 @@ export class RecipeListComponent implements OnInit {
   constructor(public recipeService: RecipeService) { }
 
   ngOnInit(): void {
-    // if (this.recipeService.userRecipes) {
-    //   this.recipeService.userRecipes.valueChanges()
-    //     .subscribe(snapshot => {
-    //       const recipes = snapshot.values();
-    //       console.log(recipes);
-    //     })
-    // }
 
   }
 
