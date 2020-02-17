@@ -57,7 +57,7 @@ export class RecipeEditComponent extends BaseUnsubscribeComponent implements OnI
   });
 
   stepsFormGroup = this.fb.group({
-    steps: this.fb.array([])
+    steps: this.fb.array([], { validators: RecipeValidators.stepsValidator })
   });
 
   constructor(
@@ -192,20 +192,6 @@ export class RecipeEditComponent extends BaseUnsubscribeComponent implements OnI
     }));
   }
 
-  moveIngredient(shift: number, currentIndex: number) {
-    let newIndex = currentIndex + shift;
-    if (newIndex === -1) {
-      newIndex = this.ingredients.length - 1;
-    }
-    else if (newIndex === this.ingredients.length) {
-      newIndex = 0;
-    }
-
-    const currentIngredient = this.ingredients.at(currentIndex);
-    this.ingredients.removeAt(currentIndex);
-    this.ingredients.insert(newIndex, currentIngredient);
-  }
-
   addImage() {
     const ref = this.dialog.open(ImageEditComponent, {
       data: { imageUrl: this.image.value },
@@ -257,6 +243,23 @@ export class RecipeEditComponent extends BaseUnsubscribeComponent implements OnI
   removeIngredient(i: number) { this.ingredients.removeAt(i); }
   removeStep(i: number) { this.steps.removeAt(i); }
   removeTag(i: number) { this.tags.removeAt(i); }
+
+  moveIngredient(shift: number, currentIndex: number) { this.move(this.ingredients, shift, currentIndex); }
+  moveStep(shift: number, currentIndex: number) { this.move(this.steps, shift, currentIndex); }
+
+  move(arr: FormArray, shift: number, currentIndex: number) {
+    let newIndex = currentIndex + shift;
+    if (newIndex === -1) {
+      newIndex = arr.length - 1;
+    }
+    else if (newIndex === arr.length) {
+      newIndex = 0;
+    }
+
+    const currentGroup = arr.at(currentIndex);
+    arr.removeAt(currentIndex);
+    arr.insert(newIndex, currentGroup);
+  }
 
   onStepKeydown(event) {
     if (event.key === "Enter") {

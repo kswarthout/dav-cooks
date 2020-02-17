@@ -131,8 +131,7 @@
         <mat-step [stepControl]="ingrdientsFormGroup">
             <form [formGroup]="ingrdientsFormGroup">
                 <ng-template matStepLabel>Ingredients</ng-template>
-                <div formArrayName="ingredients"
-                     class="add__section">
+                <div formArrayName="ingredients">
                     <div *ngFor="let ingredient of ingredients.controls; let i=index">
                         <dav-cooks-ingredient-edit [ingredient]="ingredient"
                                                    [index]="i"
@@ -146,7 +145,8 @@
                             color="primary"
                             (click)="addIngredient()"
                             tabindex="-1"
-                            [disabled]="isSaving || ingredients.invalid">
+                            [disabled]="isSaving || ingredients.invalid"
+                            class="add__button">
                         <mat-icon>add</mat-icon>
                         Add Ingredient
                     </button>
@@ -165,24 +165,38 @@
             <ng-template matStepLabel>Steps</ng-template>
             <form [formGroup]="stepsFormGroup">
                 <div formArrayName="steps">
-
                     <div *ngFor="let step of steps.controls; let i=index">
-                        <mat-form-field appearance="fill"
-                                        style="width: 100%;">
-                            <mat-label>Step {{i+1}}</mat-label>
-                            <textarea matInput
-                                      [formControlName]="i"
-                                      (keydown)="onStepKeydown($event)"
-                                      required></textarea>
-                            <button mat-button
-                                    matSuffix
-                                    mat-icon-button
+                        <div style="display: flex; align-items: baseline;">
+                            <h4 class="mat-h4"
+                                style="color: #3f51b5;">Step {{i + 1}}</h4>
+                            <button mat-icon-button
                                     matTooltip="Remove"
-                                    [matTooltipPosition]="'before'"
+                                    [matTooltipPosition]="'above'"
                                     (click)="removeStep(i)"
                                     tabindex="-1">
                                 <mat-icon>remove_circle</mat-icon>
                             </button>
+                            <button mat-icon-button
+                                    matTooltip="Move-Up"
+                                    [matTooltipPosition]="'above'"
+                                    (click)="moveStep(-1, i)"
+                                    tabindex="-1">
+                                <mat-icon>keyboard_arrow_up</mat-icon>
+                            </button>
+                            <button mat-icon-button
+                                    matTooltip="Move-Down"
+                                    [matTooltipPosition]="'above'"
+                                    (click)="moveStep(1, i)"
+                                    tabindex="-1">
+                                <mat-icon>keyboard_arrow_down</mat-icon>
+                            </button>
+                        </div>
+                        <mat-form-field appearance="fill"
+                                        style="width: 100%;">
+                            <textarea matInput
+                                      [formControlName]="i"
+                                      (keydown)="onStepKeydown($event)"
+                                      required></textarea>
                             <mat-error *ngIf="steps.controls[i].invalid">
                                 Step is required
                             </mat-error>
@@ -194,7 +208,8 @@
                             color="primary"
                             (click)="addStep()"
                             tabindex="-1"
-                            [disabled]="isSaving">
+                            [disabled]="isSaving || steps.invalid"
+                            class="add__button">
                         <mat-icon>add</mat-icon>
                         Add Step
                     </button>
