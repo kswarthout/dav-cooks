@@ -29,8 +29,10 @@ export class IngredientEditComponent implements OnInit {
   down() { this.moveDown.emit(); }
 
   onKeydown(event) {
-    if (event.key === "Enter") {
-      this.addItem.emit();
+    if (!this.ingredientForm.invalid) {
+      if (event.key === 'Enter' || event.key === 'Tab') {
+        this.addItem.emit();
+      }
     }
   }
 

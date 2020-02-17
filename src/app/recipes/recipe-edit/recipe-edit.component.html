@@ -38,7 +38,9 @@
                             #stepper>
         <mat-step [stepControl]="aboutFormGroup">
             <form [formGroup]="aboutFormGroup">
-                <ng-template matStepLabel>Info</ng-template>
+                <ng-template matStepLabel>
+                    Info
+                </ng-template>
 
                 <div class="base__form">
                     <!-- NAME -->
@@ -122,7 +124,8 @@
                 </div>
                 <div>
                     <button mat-button
-                            matStepperNext>Next</button>
+                            matStepperNext
+                            tabindex="-1">Next</button>
                 </div>
             </form>
         </mat-step>
@@ -153,9 +156,11 @@
                 </div>
                 <div>
                     <button mat-button
-                            matStepperPrevious>Back</button>
+                            matStepperPrevious
+                            tabindex="-1">Back</button>
                     <button mat-button
-                            matStepperNext>Next</button>
+                            matStepperNext
+                            tabindex="-1">Next</button>
                 </div>
             </form>
         </mat-step>
@@ -218,7 +223,8 @@
             </form>
             <div>
                 <button mat-button
-                        matStepperPrevious>Back</button>
+                        matStepperPrevious
+                        tabindex="-1">Back</button>
             </div>
         </mat-step>
     </mat-horizontal-stepper>

@@ -31,9 +31,7 @@
             <mat-form-field appearance="fill">
                 <mat-label>Name</mat-label>
                 <input matInput
-                       id="name"
                        formControlName="name"
-                       (keydown)="onKeydown($event)"
                        required>
                 <mat-error *ngIf="name.errors?.required">
                     Name is required
