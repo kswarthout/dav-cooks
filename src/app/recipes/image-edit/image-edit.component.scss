@@ -9,17 +9,27 @@ form {
 
     input {
         width: 100%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
     }
-}
 
-.ng-invalid {
-    #imageURL {
-        border-left: 5px solid #a94442;
+    .file__input {
+        display: inline-block;
+        position: relative;
+        text-align: left;
+        font-size: inherit;
+        font-weight: 400;
+        line-height: 1.125;
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+        margin: .25em 0;
+        padding-bottom: 1.34375em;
+
+        input {
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            position: relative;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
     }
 }

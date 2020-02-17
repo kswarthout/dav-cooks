@@ -1,44 +1,46 @@
 <h1 mat-dialog-title>Recipe Image</h1>
 <div mat-dialog-content
      style="border-top: 1px solid #9e9e9e;">
-    <p class="mat-body">Choose your recipe image. Use the URL input to provide a link to an existing image, or upload a
-        new image file.</p>
-    <mat-progress-bar *ngIf="uploadProgress$ | async as progress"
-                      color="primary"
-                      mode="buffer"
-                      [value]="progress">
-    </mat-progress-bar>
-    <form [formGroup]="imageForm">
-        <label class="mat-body"
-               style="margin-bottom: 8px;">Image URL</label>
-        <input formControlName="url"
-               id="imageURL"
-               [style.margin]="!(url.valid || url.pristine) ? 0 : 8">
-        <div [hidden]="url.valid || url.pristine"
-             class="alert alert__danger mat-body-1">
-            Invalid URL
-        </div>
+       <p class="mat-body">Choose your recipe image. Use the URL input to provide a link to an existing image, or upload
+              a
+              new image file.</p>
+       <mat-progress-bar *ngIf="uploadProgress$ | async as progress"
+                         color="primary"
+                         mode="buffer"
+                         [value]="progress">
+       </mat-progress-bar>
+       <form [formGroup]="imageForm">
+              <mat-form-field appearance="outline">
+                     <mat-label>Image URL</mat-label>
+                     <input matInput
+                            type="text"
+                            formControlName="url">
+                     <mat-error *ngIf="url.invalid">Invalid URL</mat-error>
+              </mat-form-field>
 
-        <label class="mat-body"
-               style="margin-top: 8px;">Upload New Image</label>
-        <input type="file"
-               (change)="upload($event)"
-               accept=".png,.jpg"
-               tabindex="-1">
-    </form>
+              <div class="file__input">
+                     <label class="mat-body"
+                            style="margin-top: 8px;">Upload New Image</label>
+                     <input type="file"
+                            (change)="upload($event)"
+                            accept=".png,.jpg"
+                            tabindex="-1">
+              </div>
+
+       </form>
 </div>
 <div mat-dialog-actions>
-    <button mat-raised-button
-            color="primary"
-            (click)="cancel()"
-            matTooltip="Close Dialog"
-            [matTooltipPosition]="'above'"
-            tabindex="-1">Cancel</button>
-    <button mat-raised-button
-            color="primary"
-            (click)="save()"
-            matTooltip="Save Changes"
-            [matTooltipPosition]="'above'"
-            [disabled]="!changed"
-            tabindex="-1">Save</button>
+       <button mat-raised-button
+               color="primary"
+               (click)="cancel()"
+               matTooltip="Close Dialog"
+               [matTooltipPosition]="'above'"
+               tabindex="-1">Cancel</button>
+       <button mat-raised-button
+               color="primary"
+               (click)="save()"
+               matTooltip="Save Changes"
+               [matTooltipPosition]="'above'"
+               [disabled]="!changed"
+               tabindex="-1">Save</button>
 </div>
