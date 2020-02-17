@@ -6,7 +6,18 @@ import { DashboardComponent } from './dashboard.component';
 
 
 const routes: Routes = [
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] }
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'recipe-box',
+        loadChildren: () => import('../recipes/recipes.module').then(m => m.RecipesModule)
+      }
+    ]
+  },
+  { path: 'dashboard', redirectTo: '/dashboard/recipe-box', pathMatch: 'full' }
 ];
 
 @NgModule({

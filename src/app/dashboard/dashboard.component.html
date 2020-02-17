@@ -27,8 +27,8 @@
 
             <div *ngIf="auth.user | async">
 
-                <dav-cooks-recipe-list></dav-cooks-recipe-list>
-
+                <!-- <dav-cooks-recipe-list></dav-cooks-recipe-list> -->
+                <router-outlet></router-outlet>
                 <!-- ADD NEW RECIPE BUTTON -->
                 <button mat-fab
                         color="primary"

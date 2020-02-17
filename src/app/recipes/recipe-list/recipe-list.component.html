@@ -1,1 +1,4 @@
-<p>recipe-list works!</p>
+<h2>Recipe List</h2>
+<div *ngFor="let r of recipeService.userRecipes | async">
+    <dav-cooks-recipe-list-item [recipe]="r"></dav-cooks-recipe-list-item>
+</div>

@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 export class RecipeService {
 
   private user: firebase.User;
-  public userRecipes: string[] = [];
+  public userRecipes: Observable<Recipe[]>;
   public recipes: AngularFireList<Recipe>;
   public userRecipesList: AngularFireList<string>;
   public dbUser: AngularFireObject<User>;
@@ -23,6 +23,7 @@ export class RecipeService {
     this.firebaseAuth.authState.subscribe((user) => {
       if (user) {
         this.user = user;
+        this.userRecipes = this.db.list<Recipe>(`/users/${this.user.uid}/recipes`).valueChanges();
         // this.userRef = this.db.database.ref(`/users/${this.user.uid}`);
         // this.userRecipesList = this.db.list(`/users/${this.user.uid}/recipes`);
         // this.userRecipesList.snapshotChanges().subscribe(snapshot => {
