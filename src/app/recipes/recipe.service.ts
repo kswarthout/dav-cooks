@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
@@ -19,7 +20,7 @@ export class RecipeService {
   userRef: firebase.database.Reference;
   recipesRef: firebase.database.Reference;
 
-  constructor(private db: AngularFireDatabase, private firebaseAuth: AngularFireAuth) {
+  constructor(private db: AngularFireDatabase, private firebaseAuth: AngularFireAuth, private http: HttpClient) {
     this.firebaseAuth.authState.subscribe((user) => {
       if (user) {
         this.user = user;
@@ -65,6 +66,18 @@ export class RecipeService {
       .ref(`/users/${this.user.uid}`)
       .child('recipes')
       .push(recipeId);
+  }
+
+  scrapeRecipe(url: string) {
+    this.http.post(`http://localhost:5001/dav-cooks-6405f/us-central1/getRecipe`, { URL: url })
+      .subscribe(
+        res => {
+          console.log(res);
+        },
+        err => {
+          console.log(err);
+        }
+      )
   }
 
 }
