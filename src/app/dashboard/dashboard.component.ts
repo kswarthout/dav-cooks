@@ -50,13 +50,10 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   addRecipe() {
-    const dialogRef = this.dialog.open(RecipeEditComponent, {
+    this.dialog.open(RecipeEditComponent, {
       height: '500px',
       disableClose: true,
       panelClass: 'app__full__bleed__dialog'
-    });
-    dialogRef.afterClosed().subscribe(result => {
-
     });
   }
 

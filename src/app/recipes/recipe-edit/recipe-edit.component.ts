@@ -28,18 +28,6 @@ export class RecipeEditComponent extends BaseUnsubscribeComponent implements OnI
   initialAboutState: any;
   initialIngredientState: Ingredient[];
   initialStepsState: string[];
-  // recipeForm = this.fb.group({
-  //   name: ['', Validators.required],
-  //   description: [''],
-  //   image: [''],
-  //   cookTime: [''],
-  //   prepTime: [''],
-  //   yield: [''],
-  //   ingredients: this.fb.array([]),
-  //   steps: this.fb.array([]),
-  //   tags: this.fb.array([]),
-  //   originalURL: ['']
-  // });
 
   aboutFormGroup = this.fb.group({
     name: ['', Validators.required],
