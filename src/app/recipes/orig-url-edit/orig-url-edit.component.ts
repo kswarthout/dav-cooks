@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
@@ -19,6 +20,7 @@ export class OrigUrlEditComponent extends BaseUnsubscribeComponent implements On
   });
 
   constructor(
+    private http: HttpClient,
     public fb: FormBuilder,
     private dialog: MatDialog,
     public dialogRef: MatDialogRef<OrigUrlEditComponent>,

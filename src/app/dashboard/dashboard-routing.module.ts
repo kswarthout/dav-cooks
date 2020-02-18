@@ -16,8 +16,7 @@ const routes: Routes = [
         loadChildren: () => import('../recipes/recipes.module').then(m => m.RecipesModule)
       }
     ]
-  },
-  { path: 'dashboard', redirectTo: '/dashboard/recipe-box', pathMatch: 'full' }
+  }
 ];
 
 @NgModule({
