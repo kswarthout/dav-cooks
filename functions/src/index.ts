@@ -1,8 +1,12 @@
+import * as corsPackage from 'cors';
 import * as functions from 'firebase-functions';
 
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
-const cors = require('cors')({ origin: true });
+// const cors = require('cors')({ origin: false });
+const cors = corsPackage({
+    origin: true
+});
 
 const scrapeMetatags = async (url: string) => {
 
