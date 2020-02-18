@@ -16,14 +16,17 @@
             <mat-error *ngIf="url.invalid">Invalid URL</mat-error>
         </mat-form-field>
     </form>
-    <p>If you would like to populate your recipe with info retrived from the
+    <p *ngIf="showLoadData"
+       class="mat-body">If you would like to populate your recipe with info retrived from the
         URL provided, click the button below. <br> NOTE: This will replace existing title, description, or image
         entries.</p>
-    <button mat-raised-button
+    <button *ngIf="showLoadData"
+            mat-raised-button
             color="primary"
             matTooltip="Fill form with recipe data"
-            [matTooltipPosition]="'below'"
-            [disabled]="url.invalid || url.pristine">Primary</button>
+            [matTooltipPosition]="'above'"
+            [disabled]="url.invalid"
+            (click)="getMetaData()">Load Recipe Info</button>
 </mat-dialog-content>
 <mat-dialog-actions>
     <button mat-raised-button

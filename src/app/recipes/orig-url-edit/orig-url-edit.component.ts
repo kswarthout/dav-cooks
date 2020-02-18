@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
@@ -7,6 +6,8 @@ import { takeUntil } from 'rxjs/operators';
 import { BaseUnsubscribeComponent } from 'src/app/shared/base-unsubscribe/base-unsubscribe.component';
 import { ChangesNotSavedComponent } from 'src/app/shared/changes-not-saved/changes-not-saved.component';
 
+import { RecipeService } from '../recipe.service';
+
 @Component({
   selector: 'dav-cooks-orig-url-edit',
   templateUrl: './orig-url-edit.component.html',
@@ -14,17 +15,18 @@ import { ChangesNotSavedComponent } from 'src/app/shared/changes-not-saved/chang
 })
 export class OrigUrlEditComponent extends BaseUnsubscribeComponent implements OnInit {
 
+  showLoadData: boolean = false;
   changed: boolean = false;
   urlForm = this.fb.group({
     url: ['', AppValidators.urlValidator]
   });
 
   constructor(
-    private http: HttpClient,
     public fb: FormBuilder,
     private dialog: MatDialog,
     public dialogRef: MatDialogRef<OrigUrlEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private recipeService: RecipeService
   ) {
     super();
   }
@@ -62,6 +64,20 @@ export class OrigUrlEditComponent extends BaseUnsubscribeComponent implements On
       url: this.url.value,
       changed: this.changed
     });
+  }
+
+  getMetaData() {
+    if (!this.url.invalid) {
+      this.recipeService.scrapeRecipeMetaData(this.url.value)
+        .subscribe(
+          res => {
+            console.log(res);
+          },
+          err => {
+            console.log(err);
+          }
+        );
+    }
   }
 
 }
