@@ -10,8 +10,11 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  emailFormControl = new FormControl('kari.swarthout@gmail.com', [Validators.required, Validators.email]);
-  passwordFormControl = new FormControl('123456', [Validators.required]);
+  // FOR TESTING
+  test_email: string = 'rick_sanchez@testuser.com';
+  test_pass: string = '123456'
+  emailFormControl = new FormControl(this.test_email, [Validators.required, Validators.email]);
+  passwordFormControl = new FormControl(this.test_pass, [Validators.required]);
 
   constructor(private auth: AuthService) { }
 
@@ -20,8 +23,8 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.auth.loginWithEmail({
-      email: 'kari.swarthout@gmail.com',
-      password: '123456'
+      email: this.test_email,
+      password: this.test_pass
     });
   }
 

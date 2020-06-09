@@ -3,22 +3,24 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+  public isSignedInStream: Observable<boolean>;
   user: Observable<firebase.User>;
 
   constructor(private firebaseAuth: AngularFireAuth, private router: Router) {
     this.user = firebaseAuth.authState;
-    // this.user.subscribe((user) => {
-    //   console.log(user.photoURL);
-    // })
+    this.isSignedInStream = this.firebaseAuth.authState.pipe(
+      map((user: firebase.User): boolean => {
+        return user != null;
+      })
+    );
   }
-
-  get authenticated(): boolean { return this.firebaseAuth.authState !== null; }
 
   signup(email: string, password: string) {
     this.firebaseAuth
